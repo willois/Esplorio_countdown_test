@@ -13,12 +13,19 @@ def main():
             else:
                 print('{} days until {}'.format(days_till_deadline.days, d))
         else:
-            a = "2015-12-25"
+            a = "12-25"
             b = "Christmas"
-            year, month, day = map(int, a.split('-'))
-            deadline = datetime(year, month, day)
-            days_till_deadline = deadline - datetime.today()
-            print('{} days until {}'.format(days_till_deadline.days, b))
+            month, day = map(int, a.split('-'))
+            if datetime.now().month > month:
+                year = datetime.now().year + 1
+                deadline = datetime(year, month, day)
+                days_till_deadline = deadline - datetime.today()
+                print('{} days until {}'.format(days_till_deadline.days, b))
+            else:
+                year = datetime.now().year
+                deadline = datetime(year, month, day)
+                days_till_deadline = deadline - datetime.today()
+                print('{} days until {}'.format(days_till_deadline.days, b))
 
     deadline_countdown()
 main()
